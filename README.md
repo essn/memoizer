@@ -1,0 +1,3 @@
+# memoizer
+
+Simple, configurable memoization.
