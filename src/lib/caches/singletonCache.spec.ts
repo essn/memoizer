@@ -46,7 +46,7 @@ test('singletonCache plays nice in a single thread', async (t) => {
   const adder = (a, b) => a + b;
   const memoizedAdder = memoizer()(adder);
 
-  const aLotOfArguments = new Array(100000).fill(1);
+  const aLotOfArguments = new Array(1000000).fill(1);
 
   await Promise.all(
     aLotOfArguments.reduce((promises, _, i) => {
