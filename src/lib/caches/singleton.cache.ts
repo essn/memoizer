@@ -1,6 +1,6 @@
 import { Entry, SingletonCache } from '../../types';
 
-export default function singleTonCache(): SingletonCache {
+export default function singletonCache(): SingletonCache {
   const entry = new Map<keyof Entry, unknown>();
 
   return {
