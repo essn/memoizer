@@ -1,21 +1,17 @@
-import { Entry, Equals, SingletonCache } from '../../types';
+import { Entry, SingletonCache } from '../../types';
 
-export default function singleTonCache(equals: Equals): SingletonCache {
-  // eslint-disable-next-line functional/no-let
-  let entry: Entry;
+export default function singleTonCache(): SingletonCache {
+  const entry = new Map<keyof Entry, unknown>();
 
   return {
-    get(key: keyof Entry): unknown | boolean {
-      if (entry && equals(key, entry.key)) {
-        return entry.value;
-      }
-
-      return false;
+    get(key: keyof Entry): unknown | null {
+      return entry.get(key);
     },
 
     put(key: keyof Entry, value: unknown): unknown {
-      entry = { key, value };
+      entry.clear();
+      entry.set(key, value);
       return value;
-    }
+    },
   };
 }
