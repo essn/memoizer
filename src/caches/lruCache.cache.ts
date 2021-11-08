@@ -29,7 +29,7 @@ const lruCache = function <T>(limit: Limit): Cache<T> {
       entries.set(key, value);
 
       return value;
-    }
+    },
   };
 };
 
