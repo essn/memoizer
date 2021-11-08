@@ -1,6 +1,6 @@
 import { Cache, Entry } from '../types';
 
-const singletonCache = function <T>(): Cache<T> {
+const singleCache = function <T>(): Cache<T> {
   const entry = new Map<keyof Entry<T>, T>();
 
   return {
@@ -12,8 +12,8 @@ const singletonCache = function <T>(): Cache<T> {
       entry.clear();
       entry.set(JSON.stringify(key), value);
       return value;
-    },
+    }
   };
 };
 
-export { singletonCache };
+export { singleCache };

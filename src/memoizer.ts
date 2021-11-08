@@ -1,10 +1,10 @@
-import { lruCache, singletonCache } from './caches';
+import { lruCache, singleCache } from './caches';
 import { Cache, Limit } from './types';
 import { MemoizedResource } from './types/memoized-resource';
 
 function createCache<T>(limit?: Limit): Cache<T> {
   if (limit === undefined) {
-    return singletonCache<T>();
+    return singleCache<T>();
   }
 
   return lruCache<T>(limit);

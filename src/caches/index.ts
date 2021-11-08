@@ -1,2 +1,2 @@
 export * from './lruCache.cache';
-export * from './singleton.cache';
+export * from './single.cache';

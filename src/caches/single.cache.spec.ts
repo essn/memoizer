@@ -1,6 +1,6 @@
 import test from 'ava';
 
-import memoizer from '../../memoizer';
+import memoizer from '../memoizer';
 
 test('singletonCache only ever stores one value', (t) => {
   const adder = (a, b) => a + b;
