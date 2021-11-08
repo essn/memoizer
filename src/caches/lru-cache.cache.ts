@@ -52,7 +52,7 @@ const lruCache = function <T>(limit: Limit): Cache<T> {
       entries.set(normalizedKey, value);
 
       return value;
-    }
+    },
   };
 };
 
