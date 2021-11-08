@@ -1,1 +1,3 @@
-export * from './memoizer';
+import memoizer from './memoizer';
+
+export default memoizer;
