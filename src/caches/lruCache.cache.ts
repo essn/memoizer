@@ -21,12 +21,14 @@ const lruCache = function <T>(limit: Limit): Cache<T> {
     },
 
     put(key: keyof Entry<T>, value: T): T {
+      const normalizedKey = JSON.stringify(key);
+
       if (entries.size >= limit) {
         const keyToDelete = entries.keys().next().value;
         entries.delete(keyToDelete);
       }
 
-      entries.set(key, value);
+      entries.set(normalizedKey, value);
 
       return value;
     },
