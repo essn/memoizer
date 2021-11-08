@@ -1,17 +1,18 @@
-import singletonCache from './lib/caches/singleton.cache';
-import { SingletonCache } from './types';
+import { lruCache, singletonCache } from './lib/caches';
+import { Cache, Limit } from './types';
+import { MemoizedResource } from './types/memoized-resource';
 
-function createCache(): SingletonCache {
   return singletonCache();
+function createCache<T>(limit?: Limit): Cache<T> {
 }
 
-export default function memoizer() {
-  const cache = createCache();
+export default function memoizer<T>(limit?: Limit): MemoizedResource<T> {
+  const cache = createCache<T>(limit);
 
   return (fn) =>
     // eslint-disable-next-line functional/functional-parameters
-    (...args) => {
-      const value = cache.get(args);
+    (...args): T => {
+      const value: T | undefined = cache.get(args);
       if (value === undefined) {
         return cache.put(args, fn.apply(fn, args));
       }
