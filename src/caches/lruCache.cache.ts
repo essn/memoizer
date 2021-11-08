@@ -9,7 +9,7 @@ const lruCache = function <T>(limit: Limit): Cache<T> {
       const hasKey = entries.has(normalizedKey);
 
       // eslint-disable-next-line functional/no-let
-      let entry: T = null;
+      let entry: T = undefined;
 
       if (hasKey) {
         entry = entries.get(normalizedKey);
