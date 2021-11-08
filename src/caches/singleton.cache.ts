@@ -1,18 +1,18 @@
-import { Cache, Entry } from '../../types';
+import { Cache, Entry } from '../types';
 
 const singletonCache = function <T>(): Cache<T> {
-  const entry = new Map<keyof Entry, T>();
+  const entry = new Map<keyof Entry<T>, T>();
 
   return {
-    get(key: keyof Entry): T | undefined {
+    get(key: keyof Entry<T>): T | undefined {
       return entry.get(JSON.stringify(key));
     },
 
-    put(key: keyof Entry, value: T): T {
+    put(key: keyof Entry<T>, value: T): T {
       entry.clear();
       entry.set(JSON.stringify(key), value);
       return value;
-    },
+    }
   };
 };
 

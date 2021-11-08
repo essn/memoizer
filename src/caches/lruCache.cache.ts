@@ -1,10 +1,10 @@
-import { Cache, Entry, Limit } from '../../types';
+import { Cache, Entry, Limit } from '../types';
 
 const lruCache = function <T>(limit: Limit): Cache<T> {
-  const entries = new Map<keyof Entry, T>();
+  const entries = new Map<keyof Entry<T>, T>();
 
   return {
-    get(key: keyof Entry): T | undefined {
+    get(key: keyof Entry<T>): T | undefined {
       const normalizedKey = JSON.stringify(key);
       const hasKey = entries.has(normalizedKey);
 
@@ -20,7 +20,7 @@ const lruCache = function <T>(limit: Limit): Cache<T> {
       return entry;
     },
 
-    put(key: keyof Entry, value: T): T {
+    put(key: keyof Entry<T>, value: T): T {
       if (entries.size >= limit) {
         const keyToDelete = entries.keys().next().value;
         entries.delete(keyToDelete);
@@ -29,7 +29,7 @@ const lruCache = function <T>(limit: Limit): Cache<T> {
       entries.set(key, value);
 
       return value;
-    },
+    }
   };
 };
 
