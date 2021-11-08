@@ -1,4 +1,4 @@
-import { lruCache, singletonCache } from './lib/caches';
+import { lruCache, singletonCache } from './caches';
 import { Cache, Limit } from './types';
 import { MemoizedResource } from './types/memoized-resource';
 
