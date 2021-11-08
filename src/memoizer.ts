@@ -2,8 +2,12 @@ import { lruCache, singletonCache } from './lib/caches';
 import { Cache, Limit } from './types';
 import { MemoizedResource } from './types/memoized-resource';
 
-  return singletonCache();
 function createCache<T>(limit?: Limit): Cache<T> {
+  if (limit === undefined) {
+    return singletonCache<T>();
+  }
+
+  return lruCache<T>(limit);
 }
 
 export default function memoizer<T>(limit?: Limit): MemoizedResource<T> {
