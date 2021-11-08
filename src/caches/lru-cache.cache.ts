@@ -1,9 +1,22 @@
 import { Cache, Entry, Limit } from '../types';
 
+/**
+ * Creates a new LRU cache.
+ *
+ * @template T
+ * @param {Limit} [limit] The maximum number of items to store in the cache.
+ * @return {*}  {Cache<T>}
+ */
 const lruCache = function <T>(limit: Limit): Cache<T> {
   const entries = new Map<keyof Entry<T>, T>();
 
   return {
+    /**
+     * Returns a given key from the cache if it exists.
+     *
+     * @param {keyof Entry<T>} key
+     * @return {*}  {(T | undefined)}
+     */
     get(key: keyof Entry<T>): T | undefined {
       const normalizedKey = JSON.stringify(key);
       const hasKey = entries.has(normalizedKey);
@@ -20,6 +33,14 @@ const lruCache = function <T>(limit: Limit): Cache<T> {
       return entry;
     },
 
+    /**
+     * Adds a given key to the cache. Removes the oldest entry if the cache
+     * is full.
+     *
+     * @param {keyof Entry<T>} key
+     * @param {T} value
+     * @return {*}  {T}
+     */
     put(key: keyof Entry<T>, value: T): T {
       const normalizedKey = JSON.stringify(key);
 
@@ -31,7 +52,7 @@ const lruCache = function <T>(limit: Limit): Cache<T> {
       entries.set(normalizedKey, value);
 
       return value;
-    },
+    }
   };
 };
 
