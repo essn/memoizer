@@ -12,7 +12,7 @@ const singleCache = function <T>(): Cache<T> {
       entry.clear();
       entry.set(JSON.stringify(key), value);
       return value;
-    }
+    },
   };
 };
 
