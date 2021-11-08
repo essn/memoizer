@@ -32,6 +32,20 @@ Note: Sometimes `yarn fix` needs to be run before the test suite so tests do not
 yarn cov
 ```
 
+### Running Examples
+
+Fibonacci summing:
+
+```bash
+yarn examples:fib
+```
+
+Tower of Hanoi:
+
+```bash
+yarn examples:hanoi
+```
+
 ## Guidelines
 Design a memoization tool/framework/library meant to be used by client developers. You may use whatever language you'd like. Broad guidlines:
 

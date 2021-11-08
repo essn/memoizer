@@ -31,7 +31,9 @@
     "cov:check": "nyc report && nyc check-coverage --lines 100 --functions 100 --branches 100",
     "version": "standard-version",
     "reset-hard": "git clean -dfx && git reset --hard && yarn",
-    "prepare-release": "run-s reset-hard test cov:check doc:html version doc:publish"
+    "prepare-release": "run-s reset-hard test cov:check doc:html version doc:publish",
+    "examples:fib": "ts-node examples/fibonacci.ts",
+    "examples:hanoi": "ts-node examples/tower-of-hanoi.ts"
   },
   "engines": {
     "node": "^14.17.0"
